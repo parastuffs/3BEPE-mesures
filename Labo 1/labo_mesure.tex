@@ -54,7 +54,7 @@
 %% fancy header & foot
 \pagestyle{fancy}
 \lhead{[BEPE30] Laboratoire de mesures\\ Labo 1~: Utilisation des appareils de mesure}
-\rhead{v1.0.0 \\ page \thepage}
+\rhead{v1.0.1 \\ page \thepage}
 \chead{\ifthenelse{\boolean{corrige}}{Corrigé}{}}
 \cfoot{}
 %%
@@ -288,7 +288,7 @@ Mesurez le délai de propagation lorsque les signaux passent à 2.5~V.
 
 
 \Question{
-	Comment évolue ce délai en fonction de la charge capacitive ?
+	Comment évolue ce délai en fonction de la charge capacitive de la sonde ?
 	Observez la différence entre la sonde en x1 et en x10.
 }
 {
@@ -308,8 +308,8 @@ L'oscilloscope ne mesurant que des tension, il s'agira de mesurer la tension aux
 \subfloat[Caractéristique\label{fig:diode-circuit}]{%
 	\shorthandoff{:!}
 		\begin{circuitikz}\draw
-			(0,3) to [american voltage source, l=$V_{dc}$] (0,0)
-			(0,3) to [european resistor, l^=$100 \Omega$] (3,3)
+			(0,3) to [american voltage source, l=$V_{in}$] (0,0)
+			(0,3) to [resistor, l^=$100 \Omega$] (3,3)
 			to [D] (3,0) -- (0,0)
 		;\end{circuitikz}
 	\shorthandon{:!}
@@ -334,12 +334,12 @@ L'oscilloscope ne mesurant que des tension, il s'agira de mesurer la tension aux
 	Réalisez le circuit (figure~\ref{fig:diode-circuit}) à l'aide d'une LED rouge, d'une diode \texttt{1N4007} ou une diode Zener ayant $V_z < 3 V$.
 	Relevez ensuite le caractéristique I-V de la diode sélectionnée.
 	\begin{astuce}
-		Rappelez-vous que l'oscilloscope prend ses mesures référencées à la masse. Placez donc la résistance intelligemment pour pouvoir prendre la mesure à ses bornes.
+		Rappelez-vous que l'oscilloscope prend ses mesures référencées à la masse.
+		Pour mesurer le courant circulant dans la diode, insérez une faible résistance de shunt (1$\Omega$ ou 1.2$\Omega$) en série avec la cathode de la diode. Sa tension sera directement proportionnelle au courant circulant dans la diode.
 	\end{astuce}
 }
 {
-	Dans la figure~\ref{fig:diode-circuit}, il faut inverser la diode et la résistance en série pour pouvoir prendre la tension aux bornes de la diode à l'aide de l'oscilloscope.
-	Le canal 1 est branché en parallèle de la source de tension, le canal 2 sur la résistance.
+	Le canal 1 est branché à l'anode de la diode, le canal 2 sur la résistance de shunt.
 	Si le mode X-Y n'affiche qu'un seul point au lieu de la caractéristique entière, vérifier l'échelle temporelle qui est peut-être trop basse.
 
 	La LED rouge est sympa pour avoir quelque chose qui clignote (si la fréquence de la source est suffisamment basse), la 1N4007 supporte de relativement gros courants (1 A sans soucis) et à donc moins de chance de mourir dans l'opération, la diode Zener est intéressante pour observer l'avalanche sur la caractéristique. Dans ce dernier cas, la tension $V_z < 3$ est importante puisque le générateur utilisé ne peut aller au-delà de 10 $V_{PP}$ ; une tension d'avalanche relativement faible nous laisse de la marge pour observer l'évolution du courant négatif dans la Zener.
@@ -441,7 +441,7 @@ Une sinusoïde parfaite ne contient qu'une seule fréquence tandis qu'une sinuso
 	Sinusoïde (fréquence fondamentale uniquement, mais on observe quelques harmonique de très faible amplitude néanmoins), triangle (quelques harmoniques impaires), carré (énormément d'harmoniques, jusqu'à relativement haute fréquence) et bruit (contenu fréquentiel homogène).
 }
 
-À l'aide d'un amplificateur opérationnel \texttt{LM741}, réalisez un montage inverseur de gain 10 alimenté en 0/5 V.
+À l'aide d'un amplificateur opérationnel \texttt{LM324}, réalisez un montage inverseur de gain 10 alimenté en 0/5 V.
 
 \Question{
 	Relevez la FFT de $V_{out}$ lorsque le montage ne sature \textbf{pas}.
@@ -464,7 +464,7 @@ Une sinusoïde parfaite ne contient qu'une seule fréquence tandis qu'une sinuso
 
 \section{Condensateur mystère}
 Il peut arriver qu'on doive déterminer la valeur d'un composant sans se référer aux informations du constructeur.
-Dans cette partie, vous avez une condensateur de capacité inconnue.
+Dans cette partie, vous avez un condensateur de capacité inconnue.
 
 \Question{
 	Sans utiliser de multimètre, déterminez la capacité du condensateur.
@@ -505,7 +505,7 @@ Dans cette partie, vous allez vérifier l'évolution de l'impédance de la sonde
 			(0,0)
 			 node[ground]{}
 			to[american voltage source, v=$V_{in}$, invert] (0,3)
-			to[C, l=$1 k\Omega$] (3,3)
+			to[R, l=$1 k\Omega$] (3,3)
 			(3,0) to[R, l=$100 k\Omega$, v=$V_{out}$] (3,3)
 			(3,0)--(0,0);
 		\end{circuitikz}
