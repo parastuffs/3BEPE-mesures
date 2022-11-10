@@ -54,7 +54,7 @@
 %% fancy header & foot
 \pagestyle{fancy}
 \lhead{[BEPE30] Laboratoire de mesures\\ Labo 1~: Utilisation des appareils de mesure}
-\rhead{v1.0.1 \\ page \thepage}
+\rhead{v1.1.0 \\ page \thepage}
 \chead{\ifthenelse{\boolean{corrige}}{Corrigé}{}}
 \cfoot{}
 %%
@@ -185,33 +185,35 @@ Pouvez-vous expliquer la différence ?
 
 
 Vous allez à présent mesurer le temps de propagation de l'une de vos portes \texttt{NOT} à l'aide de l'oscilloscope.
-À cette fin, vous allez brancher une sonde à la sortie de l'interrupteur et une seconde à la sortie de la porte logique.
-Lorsqu'elle changera de l'état bas à l'état haut, vous pourrez observer l'écart entre les deux signaux qui est dû au délai de propagation du composant.
+À cette fin, utilisez le générateur de signal pour envoyer une impulsion de 5~V à l'entrée de la porte \texttt{NOT}.
+Connectez une sonde à l'entrée de la porte et une seconde à la sortie.
+Réglez l'oscilloscope pour capturer un seul déclenchement.
+Lorsque la sortie de la porte logique changera de l'état bas à l'état haut, vous pourrez observer l'écart entre les deux signaux qui est dû au délai de propagation du composant.
 
-Voici le montage que vous devez réaliser :
+% Voici le montage que vous devez réaliser :
 
-\begin{center}
-	\begin{circuitikz} \draw 
+% \begin{center}
+% 	\begin{circuitikz} \draw 
 
-	(0,0) node [american not port] (not) {\footnotesize{\texttt{NOT}}}
+% 	(0,0) node [american not port] (not) {\footnotesize{\texttt{NOT}}}
 
-	(-3,0) node[cute spdt mid arrow,xscale=-1] (sw) {}
+% 	(-3,0) node[cute spdt mid arrow,xscale=-1] (sw) {}
 
-	($(sw.out 1)-(1,0)$) node {\texttt{+5 V}} % 5V label
-	(sw.out 1) node[rground, yscale=-1, rotate=-90] (alim) {} % 5V alim
-	(sw.out 2) node [ground, rotate=-90] {} % ground
+% 	($(sw.out 1)-(1,0)$) node {\texttt{+5 V}} % 5V label
+% 	(sw.out 1) node[rground, yscale=-1, rotate=-90] (alim) {} % 5V alim
+% 	(sw.out 2) node [ground, rotate=-90] {} % ground
 
-	(not.in 1) node[circle,fill,inner sep=1.5pt] () {}
-	(not.in 1) to [bend left] ($(not.in 1)+(1,1)$) node [right] (chanA) {\texttt{Canal 1}}
+% 	(not.in 1) node[circle,fill,inner sep=1.5pt] () {}
+% 	(not.in 1) to [bend left] ($(not.in 1)+(1,1)$) node [right] (chanA) {\texttt{Canal 1}}
 
-	(sw.in) -- (not.in 1)
+% 	(sw.in) -- (not.in 1)
 
-	(not.out) node[circle,fill, inner sep=1.5pt] () {}
-	(not.out) to [bend right] ($(not.out)+(1,-0.5)$) node [right] (chanB) {\texttt{Canal 2}}
-	(not.out) to [short] ($(not.out)+(0.5,0)$)
+% 	(not.out) node[circle,fill, inner sep=1.5pt] () {}
+% 	(not.out) to [bend right] ($(not.out)+(1,-0.5)$) node [right] (chanB) {\texttt{Canal 2}}
+% 	(not.out) to [short] ($(not.out)+(0.5,0)$)
 
-	;\end{circuitikz}
-\end{center}
+% 	;\end{circuitikz}
+% \end{center}
 
 \Question{
 Comment devez-vous régler le déclenchement (\textit{trigger}) de l'oscilloscope ?
@@ -264,16 +266,16 @@ Mesurez le délai de propagation lorsque les signaux passent à 2.5~V.
 	
 		(0,0) node [american not port] (or) {\footnotesize{\texttt{NOT}}}
 	
-		(-3,0) node[cute spdt mid arrow,xscale=-1] (sw) {}
+		% (-3,0) node[cute spdt mid arrow,xscale=-1] (sw) {}
 	
-		($(sw.out 1)-(1,0)$) node {\texttt{+5 V}} % 5V label
-		(sw.out 1) node[rground, yscale=-1, rotate=-90] (alim) {} % 5V alim
+		% ($(sw.out 1)-(1,0)$) node {\texttt{+5 V}} % 5V label
+		% (sw.out 1) node[rground, yscale=-1, rotate=-90] (alim) {} % 5V alim
 	
 		(or.in 1) node[circle,fill,inner sep=1.5pt] () {}
 		(or.in 1) to [bend left] ($(or.in 1)+(1,1)$) node [right] (chanA) {\texttt{Canal 1}}
 	
-		(sw.out 2) node [ground, rotate=-90] {} % ground
-		(sw.in) -- (or.in 1)
+		% (sw.out 2) node [ground, rotate=-90] {} % ground
+		% (sw.in) -- (or.in 1)
 
 		(or.out) node [american not port, anchor=in 1] (or2) {\footnotesize{\texttt{NOT}}}
 		(or2.out) node [american not port, anchor=in 1] (or3) {\footnotesize{\texttt{NOT}}}
